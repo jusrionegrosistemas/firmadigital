@@ -5,6 +5,13 @@
 	<groupId>firma</groupId>
 	<artifactId>firma</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<sonar.organization>jusrionegrosistemas</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+	</properties>
+	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
@@ -16,45 +23,39 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-                        <!-- con éste plugin se genera un jar ejecutable que incluye las dependencias -->
-                        <!-- 
-                            https://www.baeldung.com/executable-jar-with-maven
-                        -->
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-assembly-plugin</artifactId>
-                            <executions>
-                                <execution>
-                                    <phase>package</phase>
-                                    <goals>
-                                        <goal>single</goal>
-                                    </goals>
-                                    <configuration>
-                                        <archive>
-                                        <manifest>
-                                            <mainClass>
-                                             <!-- con éste plugin se genera un jar ejecutable que incluye las dependencias 
-                                                pjrn.signing.ejemplos.UnirestPost
-                                             -->
-                                             pjrn.signing.openargs.OpenArgs
-                                            </mainClass>
-                                        </manifest>
-                                        </archive>
-                                        <descriptorRefs>
-                                            <descriptorRef>jar-with-dependencies</descriptorRef>
-                                        </descriptorRefs>
-                                    </configuration>
-                                </execution>
-                            </executions>
-                        </plugin>
-                        <!-- con éste plugin se genera un jar ejecutable -->
-                                                
-                </plugins>
+			<!-- con éste plugin se genera un jar ejecutable que incluye las dependencias -->
+			<!-- https://www.baeldung.com/executable-jar-with-maven -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<archive>
+								<manifest>
+									<mainClass>
+										<!-- con éste plugin se genera un jar ejecutable que incluye las 
+											dependencias pjrn.signing.ejemplos.UnirestPost -->
+										pjrn.signing.openargs.OpenArgs
+									</mainClass>
+								</manifest>
+							</archive>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- con éste plugin se genera un jar ejecutable -->
+
+		</plugins>
 	</build>
 
-	<properties>
-		<java.version>1.8</java.version>
-	</properties>
 
 	<dependencies>
 		<dependency>
@@ -85,61 +86,50 @@
 			<version>1.7.21</version>
 		</dependency>
 
-                <!-- https://hc.apache.org/httpcomponents-client-4.5.x/download.html -->
-                <dependency>
-                  <groupId>org.apache.httpcomponents</groupId>
-                  <artifactId>httpclient</artifactId>
-                  <version>4.5.9</version>
-                </dependency>
-                <dependency>
-                  <groupId>org.apache.httpcomponents</groupId>
-                  <artifactId>httpclient-cache</artifactId>
-                  <version>4.5.9</version>
-                </dependency>
-                <dependency>
-                  <groupId>org.apache.httpcomponents</groupId>
-                  <artifactId>httpmime</artifactId>
-                  <version>4.5.9</version>
-                </dependency>
-                <dependency>
-                  <groupId>org.apache.httpcomponents</groupId>
-                  <artifactId>fluent-hc</artifactId>
-                  <version>4.5.9</version>
-                </dependency>                                                                
-                
-                <!-- http://kong.github.io/unirest-java/#requests -->
-                <!-- Pull in as a traditional dependency -->
-                <dependency>
-                    <groupId>com.konghq</groupId>
-                    <artifactId>unirest-java</artifactId>
-                    <version>2.3.08</version>
-                </dependency>
+		<!-- https://hc.apache.org/httpcomponents-client-4.5.x/download.html -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient-cache</artifactId>
+			<version>4.5.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>4.5.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>fluent-hc</artifactId>
+			<version>4.5.9</version>
+		</dependency>
 
-                <!-- OR as a snazzy new standalone jar with shaded dependencies -->
-                <!--
-                <dependency>
-                    <groupId>com.konghq</groupId>
-                    <artifactId>unirest-java</artifactId>
-                    <version>2.3.08</version>
-                    <classifier>standalone</classifier>
-                </dependency>
-                -->
+		<!-- http://kong.github.io/unirest-java/#requests -->
+		<!-- Pull in as a traditional dependency -->
+		<dependency>
+			<groupId>com.konghq</groupId>
+			<artifactId>unirest-java</artifactId>
+			<version>2.3.08</version>
+		</dependency>
 
-            <!-- Object Mappers Unirest (elegir jackson vs gson )-->    
-            <!-- https://mvnrepository.com/artifact/com.konghq/unirest-objectmapper-jackson -->
-            <!--
-            <dependency>
-                <groupId>com.konghq</groupId>
-                <artifactId>unirest-objectmapper-jackson</artifactId>
-                <version>2.3.08</version>
-            </dependency>
-            -->
-            <!-- https://mvnrepository.com/artifact/com.konghq/unirest-object-mappers-gson -->
-            <dependency>
-                <groupId>com.konghq</groupId>
-                <artifactId>unirest-object-mappers-gson</artifactId>
-                <version>2.3.08</version>
-            </dependency>
-                
+		<!-- OR as a snazzy new standalone jar with shaded dependencies -->
+		<!-- <dependency> <groupId>com.konghq</groupId> <artifactId>unirest-java</artifactId> 
+			<version>2.3.08</version> <classifier>standalone</classifier> </dependency> -->
+
+		<!-- Object Mappers Unirest (elegir jackson vs gson ) -->
+		<!-- https://mvnrepository.com/artifact/com.konghq/unirest-objectmapper-jackson -->
+		<!-- <dependency> <groupId>com.konghq</groupId> <artifactId>unirest-objectmapper-jackson</artifactId> 
+			<version>2.3.08</version> </dependency> -->
+		<!-- https://mvnrepository.com/artifact/com.konghq/unirest-object-mappers-gson -->
+		<dependency>
+			<groupId>com.konghq</groupId>
+			<artifactId>unirest-object-mappers-gson</artifactId>
+			<version>2.3.08</version>
+		</dependency>
+
 	</dependencies>
 </project>
